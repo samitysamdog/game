@@ -1,8 +1,54 @@
+<!DOCTYPE html>
 <html>
-<head>
-<script src="script.js">Script Here</script>
-</head>
 <body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
+<center>
+<canvas id="canvas" width="600" height="300" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+</center>
+<script src="script.js" type="text/javascript">
+var canvas = document.getElementById("canvas"); //get the canvas dom object
+var ctx = canvas.getContext("2d"); //get the context
+var c = {  //create an object to draw
+  x:0,  //x value
+  y:0,  //y value
+  r:5, //radius
+};
+var redraw = function(){  // this function redraws the c object every frame (FPS)
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the canvas
+  ctx.beginPath();  //start the path
+  ctx.arc(c.x, c.y, c.r, 0, Math.PI*2); //draw the circle
+  ctx.closePath(); //close the circle path
+  ctx.fill(); //fill the circle
+  requestAnimationFrame(redraw);//schedule this function to be run on the next frame
+}
+function move(){  // this function modifies the object
+  var decimal = Math.random() // this returns a float between 0.0 and 1.0
+  c.x = decimal * canvas.width; // mulitple the random decimal by the canvas width and height to get a random pixel in the canvas;
+  c.y = decimal * canvas.height;
+}
+redraw(); //start the animation
+setInterval(move, 1000); // run the move function every second (1000 milliseconds)
+</script>
 </body>
 </html>
